@@ -45,33 +45,32 @@ void loop() {
   Serial.println(Distactuel); */
   if(ROBUS_IsBumper(3))
   {
-  mouvement(122.5);
-  tourne(-1, 87);
-  mouvement(92);
-  tourne(1, 87);
-  mouvement(101.5);
-  tourne(1, 41);
-  mouvement(184);
-  tourne(-1,87);
-  mouvement(57);
-  tourne(1,43);
-  mouvement(110);
-
-  tourne(1,179);
-
-  mouvement(110);
-  tourne(-1,44);
-  mouvement(57);
-  tourne(1,89);
-  mouvement(184);
-  tourne(-1, 43);
-  mouvement(99.5);
-  tourne(-1, 89);
-  mouvement(92);
-  tourne(1, 89);
+  mouvement(227.5);
+  tourne(-1, 88);
+  mouvement(100);
+  tourne(1, 85);
+  mouvement(45);
+  tourne(1, 85);
+  mouvement(55);
+  tourne(-1,88);
+  mouvement(105);
+  tourne(1,85);
+  mouvement(55);
+  tourne(-1, 85);
   mouvement(122.5);
   }
 
+  
+
+/*if(ROBUS_IsBumper(1))
+  {
+    tourne(-1, 85);
+  }*/
+if(ROBUS_IsBumper(1))
+  {
+    tourne(-1, 88);
+  }
+  
 /*  mouvement(122.5);
   tourne(-1, 89);
   mouvement(92);
@@ -93,7 +92,7 @@ void tourne(int dir, int Angle){ //dir = -1 pour tourner a gauche et dir = 1 pou
   ENCODER_ReadReset(0);
   ENCODER_ReadReset(1);
 
-  while(AngleActuel <= Angle)
+  while(AngleActuel <= Angle && !ROBUS_IsBumper(2))
   {
     EncoderG=ENCODER_Read(0);
     EncoderD=ENCODER_Read(1);
@@ -102,9 +101,9 @@ void tourne(int dir, int Angle){ //dir = -1 pour tourner a gauche et dir = 1 pou
     EncoderD=ENCODER_Read(1);
     AngleActuel=(EncoderG)/(22.0418)*dir;
 
-    Serial.println(EncoderG);
+    /*Serial.println(EncoderG);
     Serial.println(EncoderD);
-    Serial.println("\n");
+    Serial.println("\n");*/
 
     if (dir < 0){
       MOTOR_SetSpeed(0,-0.2); // Moteur gauche
@@ -132,7 +131,7 @@ void mouvement(float dist)
   ENCODER_ReadReset(0);
   ENCODER_ReadReset(1);
 
-  while(Distactuel <= dist)
+  while(Distactuel <= dist && !ROBUS_IsBumper(2))
   {
     if(distAccel >= (dist/2))
     {
@@ -167,7 +166,7 @@ void mouvement(float dist)
     Distactuel=(EncoderG)/(133.6675);
     // Serial.println(EncoderD);
     // Serial.println(EncoderG);
-    Serial.println("\n");
+    //Serial.println("\n");
 
     MOTOR_SetSpeed(0, accel + 0.1 - FonctionPID(ENCODER_Read(0),ENCODER_Read(1))); // Moteur gauche
     MOTOR_SetSpeed(1, accel + 0.1 + FonctionPID(ENCODER_Read(0),ENCODER_Read(1))); // Moteur droit
