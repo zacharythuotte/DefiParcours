@@ -45,7 +45,8 @@ void loop() {
   Serial.println(Distactuel); */
   if(ROBUS_IsBumper(3))
   {
-  mouvement(227.5);
+    //Aller
+  mouvement(230);
   tourne(-1, 88);
   mouvement(100);
   tourne(1, 85);
@@ -55,9 +56,43 @@ void loop() {
   tourne(-1,88);
   mouvement(105);
   tourne(1,85);
-  mouvement(55);
-  tourne(-1, 85);
+  mouvement(60);
+  tourne(-1, 81);
   mouvement(122.5);
+
+//Ballon
+   tourne(-1, 177);
+    mouvement(225);
+    tourne(-1, 177);
+
+    //Retour
+    mouvement(95);
+    tourne(-1,88);
+    mouvement(50);
+    tourne(-1,88);
+    mouvement(105);
+    tourne(1,85);
+    mouvement(55);
+    tourne(-1,88);
+    mouvement(45);
+    tourne(-1,88);
+    mouvement(100);
+    tourne(1,88);
+    mouvement(245);
+    tourne(-1,720);
+    /*
+      mouvement(230);
+  tourne(-1, 88);
+  mouvement(100);
+  tourne(1, 85);
+  mouvement(45);
+  tourne(1, 85);
+  mouvement(55);
+  */
+
+
+
+
   }
 
   
